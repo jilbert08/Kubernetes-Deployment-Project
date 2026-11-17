@@ -1,0 +1,77 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261117124414
+Username: LOGAN\deadp
+RunAs User: LOGAN\deadp
+Configuration Name: 
+Machine: LOGAN (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command try { . "c:\Applications\Microsoft VS Code\69047191fc\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 15104
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is docs\rollout-log.txt
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> clear
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> kubectl apply -f manifests/deployment.yaml
+kubectl rollout status deployment/web-deployment
+kubectl get deployments
+kubectl get rs
+kubectl get pods -o wide --show-labels
+kubectl get svc web-service
+kubectl get endpoints web-service
+deployment.apps/web-deployment unchanged
+deployment "web-deployment" successfully rolled out
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+web-deployment   3/3     3            3           2m48s
+NAME                        DESIRED   CURRENT   READY   AGE
+web-deployment-7f68ccbc55   3         3         3       2m48s
+e>            app=web,pod-template-hash=7f68ccbc55
+web-deployment-7f68ccbc55-6gjpr   1/1     Running   0          2m48s   10.244.0.32   minikube   <none>           <non
+e>            app=web,pod-template-hash=7f68ccbc55
+web-deployment-7f68ccbc55-gw99h   1/1     Running   0          2m48s   10.244.0.30   minikube   <none>           <non
+e>            app=web,pod-template-hash=7f68ccbc55
+
+
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> kubectl scale deployment web-deployment --replicas=5
+kubectl get pods
+kubectl scale deployment web-deployment --replicas=3
+kubectl get pods
+
+
+
+
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> kubectl apply -f manifests/deployment.yaml
+kubectl rollout status deployment/web-deployment
+kubectl get rs
+kubectl get pods
+kubectl rollout history deployment/web-deployment
+
+
+
+
+
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> kubectl rollout undo deployment/web-deployment
+kubectl rollout status deployment/web-deployment
+kubectl rollout history deployment/web-deployment
+kubectl get rs
+
+
+
+
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> kubectl apply -f manifests/deployment.yaml
+kubectl rollout status deployment/web-deployment
+kubectl get deploy,rs,pods
+
+
+
+PS C:\Users\deadp\OneDrive\Documents\Kubernetes-Deployment-Project> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261117124650
+**********************
